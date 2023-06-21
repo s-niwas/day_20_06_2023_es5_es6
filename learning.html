@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Learning ES5 & ES6 </title>
+    </head>
+    <body>
+        <h1 id="projectname">20/06/2023 Task - ES5 </h1>
+        <button type="button" onclick='document.getElementById("projectname").innerHTML="20/06/2023 Task - ES5 & ES6 Ongoing"'>Status</button><br>
+        <p id="check_array" >Checking Array</p>
+        <button type="button" onclick="check_array_fun()">Click here to check the array</button><br>
+        <p id="for_each">forEach()</p>
+        <button type="button" onclick="check_for_each_fun()">Click here forEach()</button>
+        <p id="for_map">Mapping</p>
+        <button type="button" onclick="checkmap()">Map Values</button>
+        <p id="for_filter">Filterring</p>
+        <button type="button" onclick="checkfilter()">Filter Values</button>
+        <p id="for_reduce_text">Reducing</p>
+        <button type="button" onclick="checkreduce()">Reduce Values</button>
+        <p id="for_reduceright_text">Reducing Right</p>
+        <button type="button" onclick="checkreduceright()">Reduce Right Values</button>
+        <p id="for_every_text">for Every</p>
+        <button type="button" onclick="checkevery()">Check Every Values</button>
+        <p id="for_some_text">for Some</p>
+        <button type="button" onclick="checksome()">Check Some Values</button>
+        <p id="for_index_text">for Index</p>
+        <button type="button" onclick="showindexing()">Check Index</button>
+        <h3>Parsing</h3>
+        <p id="parse_text"></p>
+        <h3>Stringify - convert to string</h3>
+        <p id="stringify_text"></p>
+        <h3>Date.now() - returns the number of milliseconds since zero date (January 1. 1970 00:00:00 UTC)</h3>
+        <p id="date_text_1"></p>
+        <p id="date_text_2"></p>
+        <p id="date_text_3"></p>
+
+        <h1 id="projectname">20/06/2023 Task - ES6 </h1>
+        <h3>Arrow</h3>
+        <p id="chk_arrow"></p>
+        <h3>Spread(...) Elements</h3>
+        <p id="spread_oper"></p>
+        <p id="spread_max"></p>
+        <h3>JavaScript Map</h3>
+        <p id="map_elements"></p>
+        <h3>JavaScript Class</h3>
+        <p id="class_example"></p>
+        <h3>JavaScript Promises</h3>
+        <p id="promise_ex"></p>
+        <h3>String includes</h3>
+        <p id="str_includes"></p>
+        <h3>startsWith() & endsWith()</h3>
+        <p id="starts_and_ends_with"></p>
+        <h3>Array.from()</h3>
+        <p id="array_from"></p>
+        <h3>Array keys</h3>
+        <p id="keys_html"></p>
+        <h3>Array find() & findIndex()</h3>
+        <p id="array_finds"></p>
+        <h3>Object Entries</h3>
+        <p id="entries_main_text"></p>
+
+        <script>
+            //this one to check the array
+            var emp=["Vighnesh","Hari","Niwas","Niwas"];
+            function check_array_fun(){
+                document.getElementById("check_array").innerHTML=Array.isArray(emp);
+            }
+            var n1=[12,6,21,1];
+            //this one to display the each elements from the list
+            function check_for_each_fun(){
+            var txt="";
+            
+            n1.forEach(check_for_each);
+            document.getElementById("for_each").innerHTML=txt;
+            function check_for_each(value){
+                txt=txt+ value+"<br>";
+            }}
+            //this one for map()
+            function checkmap(){
+                
+                var n2=n1.map(map_function);
+                document.getElementById("for_map").innerHTML=n2;
+                function map_function(value,index,array){
+                    return "<br>"+value*2+" - Index :"+index;
+                }
+            }
+            //this one for filter
+            function checkfilter(){
+                
+                var n2=n1.filter(filter_function);
+                document.getElementById("for_filter").innerHTML=n2;
+                function filter_function(value){
+                    return value>10;
+                }
+            }
+            //this one for reduce()
+            function checkreduce(){
+                    var sum=n1.reduce(for_reduce);
+                    document.getElementById("for_reduce_text").innerHTML=sum;
+                    function for_reduce(total,value,index,array){
+                            return total+value+index;
+                    }
+            }
+            //this one for reduceRight()
+            function checkreduceright(){
+                    var sum=n1.reduceRight(for_reduceright);
+                    document.getElementById("for_reduceright_text").innerHTML="Iterates Right to left , total :"+sum;
+                    function for_reduceright(total,value){
+                            return total+value;
+                    }
+            }
+            function checkevery(){
+                    var chk=n1.every(for_every);
+                    document.getElementById("for_every_text").innerHTML=chk;
+                    function for_every(value,index,array){
+                            return value>10;
+                    }
+            }
+            function checksome(){
+                    var chk=n1.some(for_some);
+                    document.getElementById("for_some_text").innerHTML=chk;
+                    function for_some(value,index,array){
+                            return value>10;
+                    }
+            }
+            function showindexing(){
+                var a=emp.indexOf("Niwas")+1;
+                var b=emp.lastIndexOf("Niwas")+1;
+                document.getElementById("for_index_text").innerHTML="indexOf() - "+a+"\nlastIndexOf() - "+b;
+                }
+                const text = '{"name":"Ram", "age":20, "city":"Chennai"}';
+                const obj = JSON.parse(text);
+                document.getElementById("parse_text").innerHTML = obj.name + ", " + obj.age;
+             //stringify
+            const obj1 = {name: "Ram", age: 20, city: "Chennai"};
+            const myJSON = JSON.stringify(obj1);
+            document.getElementById("stringify_text").innerHTML = myJSON;
+            //Date.now()
+            document.getElementById("date_text_1").innerHTML = Date.now();
+            var d=new Date();
+            document.getElementById("date_text_2").innerHTML = d.getTime();
+            document.getElementById("date_text_3").innerHTML = "Minutes : "+d.getMinutes();
+        
+            //ES6
+            const x=(a,b) => a*b; // only if function returns single statement 
+            document.getElementById("chk_arrow").innerHTML=x(10,2);    
+            //spread elements ---- expands the iteration or array
+            const var1=["Monday","Tuesday"];
+            const var2=["Wednesday"];
+            const var3=["Thrusday","Friday"];
+            const work_days=[...var1,...var2,...var3];
+            document.getElementById("spread_oper").innerHTML=work_days;
+            document.getElementById("spread_max").innerHTML="Max Value : "+Math.max(...n1);
+            //create a map
+            const items=new Map([
+                ["watch",2499],
+                ["pen",20],
+                ["mobile",100000]
+            ]);
+            document.getElementById("map_elements").innerHTML=items.get("pen");
+
+            // JS Classes
+            class Car{
+              constructor(title1,title2,desc){
+                this.title1=title1;
+                this.title2=title2;
+                this.desc=desc;
+              }
+             present(){
+                return this.title1+this.title2+this.desc;              
+              } 
+              
+            }
+            const car1=new Car("CONSULTING","Think big start small","Development of your IoT strategy");
+            document.getElementById("class_example").innerHTML=car1.present();
+
+
+
+
+            
+
+            //!!!!!!!!!!!!!    JavaScript Promises     !!!!!!!!!!!!!!!!!
+            const myPromise=new Promise(function(myResolve,myReject){
+                let amount=1500;
+                if((amount%100==0 || amount%500==0 || amount%200==0 )&&(amount!=2000)){
+                    myResolve("Amount Deposit Successful");
+                }else{
+                    myReject("Denomination not valid");
+                }
+            });
+            myPromise.then(
+                function(value){document.getElementById("promise_ex").innerHTML=value;},
+                function(error){document.getElementById("promise_ex").innerHTML=error;});
+            
+
+
+
+
+
+
+                //String.includes()
+
+            let str="Welcome to incresco";
+            document.getElementById("str_includes").innerHTML="checking "+str+" has incresco : "+str.includes("incresco");
+            //starts with and ends with
+            document.getElementById("starts_and_ends_with").innerHTML="Checking String.startsWith() : "+str.startsWith("W")+",Checking String.endsWith() : "+str.endsWith("co");
+            //Array.from()
+            document.getElementById("array_from").innerHTML=Array.from(str);
+            //Array keys
+            const var_keys=emp.keys();
+            let keys_text="";
+            for(let x of var_keys){
+                keys_text+=x+"<br>";
+            }
+            document.getElementById("keys_html").innerHTML=keys_text;
+            //Array find 
+            document.getElementById("array_finds").innerHTML="Element : "+n1.find(findfromarray)+" Index : "+n1.findIndex(findfromarray);
+            function findfromarray(value,index,array){
+                return value>20;
+            }
+            //Object entries
+            const entries_text=emp.entries();
+            for(let a of entries_text){
+                document.getElementById("entries_main_text").innerHTML+=a+"<br>";
+            }
+        </script>
+    </body>
+</html>

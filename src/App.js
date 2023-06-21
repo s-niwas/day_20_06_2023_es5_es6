@@ -1,25 +1,60 @@
 import logo from './logo.svg';
 import './App.css';
+import React,{useState , useMemo,useContext,createContext,useEffect} from 'react';
 
-function App() {
+export const ThemeContext = React.createContext()
+export default function App() {
+  
+  
+  //useContext 
+    const [darkTheme , setDarkTheme]=useState(true) //if darktheme then true otherwise false
+    function togTheme(){
+      setDarkTheme(prevDarkTheme =>!prevDarkTheme)
+    }
+
+  //useState
+  const [count,setCount]=useState(0)
+  const [count_effect,setcount_effect]=useState(0)
+  const [theme,setTheme]=useState('blue')
+
+  //useEffect
+  useEffect(() => {
+    setTimeout(() => {
+      setcount_effect((count_effect) => count_effect + 1);
+    }, 1000);
+  },[theme]);
+
+
+  //useMemo
+  const doublenumber=useMemo(()=>{
+    return slowfunc(count)
+  },[count]);
+  function decrementby2(){
+    setCount(prevCount => prevCount-1)
+    setCount(prevCount => prevCount-1)
+    setTheme('red')
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <br></br>
+      <span>{count}</span><br></br>
+      <span>{theme}</span><br></br>
+      <span>{doublenumber}</span>
+      <br></br>
+      <button onClick={()=>setCount(count+1)}>Add score</button><br></br><br></br>
+      <button onClick={()=>setCount(count-1)}>Subract score</button><br></br><br></br>
+      <button onClick={()=>setcount_effect()}>useEffect</button><br></br><br></br>
+      <span>{count_effect}</span><br></br><br></br>
+      <button onClick={decrementby2}>Decrement score by 2 (-2)</button><br></br><br></br>
+      <button onClick={()=>setTheme('white')}>Theme</button><br></br><br></br>
+
+      <ThemeContext.Provider value={darkTheme}>
+       <button onClick={togTheme}>Using Context</button>
+      </ThemeContext.Provider>
     </div>
   );
 }
-
-export default App;
+function slowfunc(num){
+  for(let i=0;i<=10000000;i++){}
+  return num*num;
+}
